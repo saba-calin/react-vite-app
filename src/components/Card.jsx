@@ -1,3 +1,5 @@
+import styles from './Card.module.css'
+
 // components in React are JavaScript functions
 const Card = ({video}) => {
     // const title = props.title ?? 'Default Value';  // coalescent operator
@@ -7,13 +9,13 @@ const Card = ({video}) => {
         alert('button clicked')
     }
 
-    return video.genre === 'Horror' ? (
-        <div>
-            <h1>{video.title}</h1>
-            <p>{video.description}</p>
-            <button onClick={handleClick}>View</button>
+    return (
+        <div className={styles.wrapper}>
+            <h1 className={styles.title}>{video.title}</h1>
+            <p className={styles.desc}>{video.description}</p>
+            <button onClick={handleClick} className={styles.button}>View</button>
         </div>
-    ) : null;
+    );
 };
 
 export default Card;
