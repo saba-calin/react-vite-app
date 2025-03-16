@@ -1,11 +1,16 @@
-import {Fragment} from "react";
+import {Fragment, useContext} from "react";
+import {CounterContext} from "../CounterContext.js";
+import useLifecycleLog from "../useLifecycleLog.js";
 
 const Details = () => {
+    const [state, dispatch] = useContext(CounterContext);
+    useLifecycleLog("Details")
+
     return (
         <Fragment>
             <h1>Video title</h1>
-            <p>1</p>
-            <p>2</p>
+            <p>{state.countOne}</p>
+            <p>{state.countTwo}</p>
         </Fragment>
     );
 }

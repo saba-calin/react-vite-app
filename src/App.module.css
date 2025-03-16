@@ -3,6 +3,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+}
+
+.buttons {
+    text-align: center;
 }
 
 .light-mode {
