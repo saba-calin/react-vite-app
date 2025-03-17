@@ -7,7 +7,7 @@ const Counter = () => {
     useEffect(() => {  // runs only when the component is mounted or unmounted
         console.log("component mounted");
         setMounted(true);
-    }, []);
+    }, []);  // if not for [], it would run everytime a component is changed
     useEffect(() => {  // runs only when the reactive value 'count' is changed
         if (mounted) {
             console.log("value changed");

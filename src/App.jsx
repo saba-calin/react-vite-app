@@ -5,7 +5,7 @@ import Counter from "./components/Counter.jsx";
 import {videos} from "./video-data.js";
 import styles from './App.module.css';
 import {posts} from "./tech-data.js";
-import {Fragment, lazy, Suspense, useReducer, useState} from "react";
+import {Fragment, lazy, Suspense, useEffect, useReducer, useState} from "react";
 import {ErrorBoundary} from "react-error-boundary";
 import CounterTwo from "./components/CounterTwo.jsx";
 import TextToggle from "./components/TextToggle.jsx";
@@ -13,6 +13,9 @@ import UseReducerCounter from "./components/UseReducerCounter.jsx";
 import {CounterContext} from "./CounterContext.js";
 import UseContextCounter from "./components/UseContextCounter.jsx";
 import CustomHookCounter from "./components/CustomHookCounter.jsx";
+import axios from "axios";
+import HomePage from "./pages/HomePage.jsx";
+import {NavLink, Outlet} from "react-router-dom";
 
 const Details = lazy(async () => {
     await new Promise(res => setTimeout(res, 2000));
@@ -40,6 +43,10 @@ const counterReducer = (state, action) => {
     return actions[action] ? actions[action]() : state;
 }
 
+const MyNavLink = (props) => {
+    return <NavLink to={props.to} className={({isActive}) => isActive ? "link-red" : "link-black"}>{props.children}</NavLink>
+}
+
 const App = () => {
     // const showDetails = false;
     // return showDetails ? (
@@ -56,8 +63,7 @@ const App = () => {
     //     </Fragment>
     // );
 
-
-
+    // styling
     // const darkMode = false;
     // const darkModeClass = darkMode ? styles['dark-mode'] : styles['light-mode'];
     //
@@ -85,6 +91,7 @@ const App = () => {
     //     </div>
     // );
 
+    // hooks challenge
     // const [filteredVideos, setFilteredVideos] = useState(videos);
     // const [selectedGenre, setSelectedGenre] = useState('All')
     // const genres = ['Drama', 'Science Fiction', 'Horror', 'Action', 'All'];
@@ -113,6 +120,109 @@ const App = () => {
     // );
 
 
+
+    // fetch
+    // const [pokemonList, setPokemonList] = useState(null);  // could use '{results: []}' instead of null
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         await new Promise(res => setTimeout(res, 2000));
+    //         const response = await fetch('https://pokeapi.co/api/v2/pokemon');
+    //         const data = await response.json();
+    //         setPokemonList(data);
+    //         // console.log(data);
+    //         // console.log(pokemonList);
+    //     }
+    //     fetchData();
+    // }, []);
+    //
+    // useEffect(() => {
+    //     if (pokemonList != null) {
+    //         console.log(pokemonList.results);
+    //     }
+    // }, [pokemonList]);
+    //
+    // if (pokemonList?.results) {  // chaining - (checks if 'pokemonList' exists first, then checks the 'results'
+    //     return (
+    //         <Fragment>
+    //             <h1>Pokemon</h1>
+    //             {pokemonList.results.map(p => (<div key={p.name}>{p.name}</div>))}
+    //         </Fragment>
+    //     );
+    // }
+    // else {
+    //     return <div>Loading...</div>
+    // }
+
+
+
+    // axios
+    // const [pokemonList, setPokemonList] = useState(null);  // could use '{results: []}' instead of null
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             await new Promise(res => setTimeout(res, 2000));
+    //             const {data} = await axios.get('https://pokeapi.co/api/v2/pokemon');
+    //             setPokemonList(data);
+    //         }
+    //         catch (error) {
+    //             alert(error);
+    //         }
+    //     }
+    //     fetchData();
+    // }, []);
+    //
+    // if (pokemonList?.results) {  // chaining - (checks if 'pokemonList' exists first, then checks the 'results'
+    //     return (
+    //         <Fragment>
+    //             <h1>Pokemon</h1>
+    //             {pokemonList.results.map(p => (<div key={p.name}>{p.name}</div>))}
+    //         </Fragment>
+    //     );
+    // }
+    // else {
+    //     return <div>Loading...</div>
+    // }
+
+
+
+    // axios challenge
+    // const [list, setList] = useState(null);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             await new Promise(res => setTimeout(res, 2000));
+    //             const {data} = await axios.get('https://swapi.dev/api/people');
+    //             setList(data);
+    //         }
+    //         catch (error) {
+    //             alert(error);
+    //         }
+    //     }
+    //     fetchData();
+    // }, [])
+    //
+    // if (list?.results) {
+    //     return (
+    //         <Fragment>
+    //             {list.results.map(e => (<div key={e.name}>{e.name}</div>))}
+    //         </Fragment>
+    //     );
+    // }
+    // else {
+    //     return <div>Loading...</div>;
+    // }
+
+    return (
+        <div className={styles.wrapper}>
+            <nav>
+                <MyNavLink to={"/"}>Home</MyNavLink>
+                <MyNavLink to={"/about-us"}>About Us</MyNavLink>
+                <MyNavLink to={"/contact-us"}>Contact Us</MyNavLink>
+                <MyNavLink to={"/todo"}>To Do List</MyNavLink>
+            </nav>
+            <Outlet />
+        </div>
+    );
 }
 
 export default App

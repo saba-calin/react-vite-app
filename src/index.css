@@ -1,3 +1,11 @@
 * {
     font-family: "Quicksand", sans-serif;
 }
+
+.link-red {
+    color: red;
+}
+
+.link-black {
+    color: black;
+}

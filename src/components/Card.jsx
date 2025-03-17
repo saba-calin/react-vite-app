@@ -1,4 +1,5 @@
 import styles from './Card.module.css'
+import {Link} from "react-router-dom";
 
 // components in React are JavaScript functions
 const Card = ({video}) => {
@@ -13,7 +14,8 @@ const Card = ({video}) => {
         <div className={styles.wrapper}>
             <h1 className={styles.title}>{video.title}</h1>
             <p className={styles.desc}>{video.description}</p>
-            <button onClick={handleClick} className={styles.button}>View</button>
+            <Link to={`/${video.id}`} className={styles.button}>View</Link>
+            {/*<button onClick={handleClick} className={styles.button}>View</button>*/}
         </div>
     );
 };

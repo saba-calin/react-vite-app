@@ -1,0 +1,30 @@
+.message {
+    height: 10rem;
+}
+
+.email {
+    margin-bottom: 2rem;
+}
+
+.message, .email {
+    width: 30rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 2rem;
+    border-radius: 10px;
+    background-color: darkslategray;
+    color: white;
+    border-style: none;
+
+    &:hover {
+        cursor: pointer;
+        background-color: cadetblue;
+    }
+}
